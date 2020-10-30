@@ -1,4 +1,4 @@
-package com.banking.ibs.controller;
+package com.banking.ibs.controller.customer;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -62,12 +62,12 @@ public class LoginPageController extends HttpServlet {
 			//context.setAttribute("username", username);
 
 			// continue the same request cycle
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("./resources/jsp/identityManagement/customerHome.jsp");
 			dispatcher.forward(request, response);
 		}
 		else 
 		{
-			response.sendRedirect("invalidCredentials.html"); // static [pre-defined html file]
+			response.sendRedirect("./resources/html/invalidCredentials.html"); // static [pre-defined html file]
 
 			//writer.write("<h1>Invalid Credentials!</h1>"); // dynamic [on the fly html]
 			//writer.write("<h2>Please Re-login!</h2>");

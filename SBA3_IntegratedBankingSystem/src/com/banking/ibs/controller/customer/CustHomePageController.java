@@ -1,4 +1,4 @@
-package com.banking.ibs.controller;
+package com.banking.ibs.controller.customer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class HomePageController
  */
-@WebServlet("/home")
-public class HomePageController extends HttpServlet {
+@WebServlet("/customerHome")
+public class CustHomePageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public HomePageController() {
+    public CustHomePageController() {
         // TODO Auto-generated constructor stub
     }
 
