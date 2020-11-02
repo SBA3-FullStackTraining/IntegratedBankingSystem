@@ -34,14 +34,14 @@ public class LoginPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		String username = request.getParameter("username");
+		String userID = request.getParameter("customerID");
 		String password = request.getParameter("password");
 
 		PrintWriter writer = response.getWriter();
 		LoginPageDAOImpl loginDAO = new LoginPageDAOImpl();
-		HashMap<String, String> cred_map = loginDAO.getUserCredData();
+		HashMap<String, String> cred_map = loginDAO.getUserCredData("customer");
 
-		if(cred_map.keySet().contains(username) && cred_map.get(username).equals(password)) {
+		if(cred_map.keySet().contains(userID) && cred_map.get(userID).equals(password)) {
 
 			//response.sendRedirect("home.html"); // static [pre-defined html file]
 
@@ -51,15 +51,15 @@ public class LoginPageController extends HttpServlet {
 			//-------------------------------------------------------------------------
 
 			//request scope
-			//request.setAttribute("username", username);
+			//request.setAttribute("customerID", userID);
 
 			//session scope
 			HttpSession session = request.getSession();
-			session.setAttribute("username", username);
+			session.setAttribute("customerID", userID);
 
 			// application scope
 			//ServletContext context =  this.getServletContext();
-			//context.setAttribute("username", username);
+			//context.setAttribute("customerID", userID);
 
 			// continue the same request cycle
 			RequestDispatcher dispatcher = request.getRequestDispatcher("./resources/jsp/identityManagement/customerHome.jsp");

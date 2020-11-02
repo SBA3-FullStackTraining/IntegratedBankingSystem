@@ -3,20 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="../css/customerRegister.css" />
+<link rel="stylesheet" type="text/css" href="../css/background.css" />
 <title>Registration Page</title>
 </head>
-<body bgcolor="#525252">
+<body class="login_reg">
 	<h1 id="welcomeText" align="center">Welcome to registration page</h1>
-	<form class="registerForm" method="post" action="register">
+	<br/><br/><br/>
+	<form class="registerForm" method="POST" action="custRegister">
 		<table>
-			<thead class="theader">
-				<tr class="thead1" align="center">
+			<tbody>
+				<tr class="heading" align="center">
 					<td colspan="2">
 						<h2>Fill in the details</h2>
 					</td>
 				</tr>
-			</thead>
-			<tbody>
 				<tr>
 					<td align="right"><label>First Name :</label></td>
 					<td><input type="text" name="firstname" /></td>
@@ -58,16 +58,28 @@
 					<td><input type="text" name="address" /></td>
 				</tr>
 				<tr>
+					<td align="right"><label>Select ID : </label></td>
+					<td>
+					<input type="radio" id="adhaar" name="id_proof" value="adhaar"><label for="adhaar">Adhaar</label>
+					<input type="radio" id="pan" name="id_proof" value="pan"><label for="pan">PAN</label>
+					</td>
+				</tr>
+				<tr>
+					<td align="right"><label>ID number : </label></td>
+					<td><input type="text" name="id_number" /></td>
+				</tr>
+				<tr>
 					<td align="right"><label>upload ID : </label></td>
 					<td><input type="file" name="id_details" /></td>
 				</tr>
 				<tr>
 					<td style="line-height: 10px;" colspan=3>&nbsp;</td>
-				</tr>
+				</tr>			
 			</tbody>
 		</table>
-		<br> <input type="submit" value="Register" id="register" />
-<input type="button" value="cancel" id="btnCancel" />
+		<br> 
+		<input type="submit" value="Register" id="register" />
+		<input type="button" value="cancel" id="btnCancel" onclick="location.href='../../index.html';"/>
 	</form>
 </body>
 </html>

@@ -20,21 +20,21 @@ public class DBConnection
 	public static Connection con;
 	static String db_props_path = "database.properties";
 	static Properties db_props = new Properties();
-
+		
 	
-	synchronized public static Connection getConnection()
+	synchronized public static Connection getConnection(String driver, String url, String user, String password)
 	{
 		try 
 		{	
 			//db_props.load(new FileInputStream(db_props_path));
-			String driver = "com.mysql.jdbc.Driver";	//db_props.getProperty("db.driver");
-			String url = "jdbc:mysql://localhost:3306";	//db_props.getProperty("db.url");
-			String user = "root";	//db_props.getProperty("db.user");
-			String pass = "tiger";	//db_props.getProperty("db.password");
+			//String driver = "com.mysql.jdbc.Driver";	//db_props.getProperty("db.driver");
+			//String url = "jdbc:mysql://localhost:3306";	//db_props.getProperty("db.url");
+			//String user = "root";	//db_props.getProperty("db.user");
+			//String pass = "tiger";	//db_props.getProperty("db.password");
 
 			Class.forName(driver);
 
-			con = DriverManager.getConnection(url,user,pass);
+			con = DriverManager.getConnection(url, user, password);
 			log.info("Connection Established............");
 		}
 		catch (Exception e) 

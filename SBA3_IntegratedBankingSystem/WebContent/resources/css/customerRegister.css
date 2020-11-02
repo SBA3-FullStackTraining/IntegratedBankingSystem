@@ -1,26 +1,40 @@
 table {
-	width: 440px;;
+	width: 500px;;
 	height: 80px;
 	border-collapse: collapse;
 	margin: auto;
 	vertical-align: middle;
-	margin-top: 100px;
 	border-spacing: 0;
-	border-radius: 12px;
-	background: #a3c6ce;
+	border-radius: 4px;
+	background: #FFF;
 	position: relative;
 	box-shadow: 3px 3px 3px #1f0d29;
 }
 
 input {
 	font-size: 15px;
-	font-family: monospace;
+	font-family: sans-serif;
+	background: #fbebee;
+	border: black;
+	border-style: solid;	
+	border-width: thin;
+}
+
+input[type='text'] {
+	    width: 190px;
+}
+
+input[type='file'] {
+	  width: 190px;
+	  font-size: smaller;
 }
 
 label {
 	font-family: Arial;
 	font-size: 15px;
 	font-weight: 700;
+	color: #d8225d;
+	font-style: italic;
 }
 
 .registerForm {
@@ -28,7 +42,7 @@ label {
 	vertical-align: middle;
 	text-align: center;
 	margin: auto;
-	width: 380px;;
+	//width: 380px;;
 }
 
 .registerForm label {
@@ -46,27 +60,40 @@ label {
 }
 
 h2 {
-	background-color: #2f606b;
+	    margin-top: 10px;
+	    height: 40px;
+	background-color: #d8225d;
 }
 
 input#register:hover {
 	box-shadow: 2px 2px 2px #000000;
-	transform: translateX(-3%);
+	transform: translateX(-1%);
 	color: #000;
+	background-color: #d8225d;
 }
 
-input#register {
-	margin-left: 85px;
-	border-radius: 4px;
+input#btnCancel:hover {
+	box-shadow: 2px 2px 2px #000000;
+	transform: translateX(-1%);
+	color: #000;
+	background-color: #d01d1d;
+}
+
+
+input#btnCancel, input#register {
+	border-radius: 3px;
 	border: 1px;
+	margin: auto;
 	display: inline-block;
 	cursor: pointer;
 	font-family: Georgia, serif;
 	font-size: 14px;
 	padding: 6px 12px;
 	text-decoration: none;
-	background: #124026;
+	background: #220846;
 	font-weight: 900;
 	color: aliceblue;
 	position: relative;
+	width: 180px;	
 }
+

@@ -1,7 +1,6 @@
-package com.banking.ibs.controller.admin;
+package com.banking.ibs.controller.customer;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -14,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.banking.ibs.dao.serviceImpl.LoginPageDAOImpl;
+import com.banking.ibs.dto.Customer;
 
 /**
- * Servlet implementation class AdminHomePageController
+ * Servlet implementation class CustRegistrationFormController
  */
-@WebServlet("/adminHome")
-public class AdminHomePageController extends HttpServlet {
+@WebServlet("/custRegister")
+public class CustRegistrationFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LoginPageDAOImpl loginDAO;
 
@@ -31,7 +31,7 @@ public class AdminHomePageController extends HttpServlet {
     	String password = config.getServletContext().getInitParameter("jdbcPassword");
     	
     	this.loginDAO = new LoginPageDAOImpl(driver, url, username, password);
-    }
+    }   
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,24 +44,21 @@ public class AdminHomePageController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userID = request.getParameter("adminID");
-		String password = request.getParameter("password");
-
-		PrintWriter writer = response.getWriter();
-		HashMap<String, String> cred_map = loginDAO.getUserCredData("admin");
-
-		if(cred_map.keySet().contains(userID) && cred_map.get(userID).equals(password)) {
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("userID", userID);
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("./resources/jsp/identityManagement/adminHome.jsp");
-			dispatcher.forward(request, response);
-		}
-		else 
-		{
-			response.sendRedirect("./resources/html/invalidCredentials.html"); 
-		}
+		HttpSession session = request.getSession();
+		
+		Customer newCustomer = new Customer("TBD", "TBD", request.getParameter("firstname"), request.getParameter("lastname"),
+				request.getParameter("phone"), request.getParameter("email"), request.getParameter("dob"), request.getParameter("city"),
+				request.getParameter("state"), request.getParameter("country"), request.getParameter("pincode"), request.getParameter("address"), 
+				request.getParameter("id_proof"), request.getParameter("id_number"));
+		
+		boolean updateFlag = loginDAO.addNewRegisteredCustomer(newCustomer);
+		
+		session.setAttribute("updateFlag", Boolean.toString(updateFlag));
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("resources/jsp/identityManagement/customerRegistrationStatus.jsp");
+		dispatcher.forward(request, response);
+		
+		
 	}
 
 }
