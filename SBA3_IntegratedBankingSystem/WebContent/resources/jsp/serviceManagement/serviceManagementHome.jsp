@@ -8,7 +8,7 @@
 </head>
 <body bgcolor = "LightBlue">
 <h1 style="text-align:center">Select Utility Provider</H1>
-<h2>Select the loan you want to apply</h2> <br/>
+<h2>Select the bill you want to pay</h2> <br/>
 <form action="" method="Post">
 <select name=ltype id=Ltype>
  <option value="ElectricBoard" selected>ElectricBoard</option>
