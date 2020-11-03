@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/customerLogin.css" /> -->
+</head>
+<body bgcolor="#525252">
+	<h1 id="welcomeText" align="center">Welcome to Integrated Banking System</h1>
+	<form class="loginform" method="post" action="login">
+		<table>
+			<tbody>
+				<tr>
+					<td align="right"><label>UserName :</label></td>
+					<td><input type="text" name="username" /></td>
+				</tr>
+				<tr>
+					<td align="right"><label>Password : </label></td>
+					<td><input type="password" name="password" /></td>
+				</tr>
+			</tbody>
+		</table>
+		<br/>
+		<input type="submit" value="Login" id="login" />
+		<input type="button" value="Register" id="register" onclick="location.href='./resources/html/customerRegister.html';" style="margin-left: 70px;"/>
+		<br/><br/>
+		<input type="button" value="forgot password" id="forgotpass" />
+	</form>
+</body>
+</html>

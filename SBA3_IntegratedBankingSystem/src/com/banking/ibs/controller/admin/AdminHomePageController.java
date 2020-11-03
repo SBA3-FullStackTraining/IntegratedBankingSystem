@@ -55,7 +55,7 @@ public class AdminHomePageController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("userID", userID);
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("./resources/jsp/identityManagement/adminHome.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("resources/jsp/identityManagement/adminHome.jsp");
 			dispatcher.forward(request, response);
 		}
 		else 

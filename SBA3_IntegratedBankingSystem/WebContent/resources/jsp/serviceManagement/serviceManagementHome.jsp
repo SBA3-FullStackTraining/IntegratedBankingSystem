@@ -4,9 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Select Utility Provider</title>
 </head>
-<body>
-<p>welcome to SM</p>
+<body bgcolor = "LightBlue">
+<h1 style="text-align:center">Select Utility Provider</H1>
+<h2>Select the loan you want to apply</h2> <br/>
+<form action="" method="Post">
+<select name=ltype id=Ltype>
+ <option value="ElectricBoard" selected>ElectricBoard</option>
+ <option value="WaterSupply">WaterSupply</option>
+ <option value="PhoneBill">PhoneBill</option>
+ <option value="Home">Home</option>
+</select>
+<hr/>
+
+<lable>Enter the Amount</lable> <input type="text" name=Payamount id=Payamount/>
+<br/>
+
+<input type="submit" value="PayBill">
+</form>
 </body>
 </html>

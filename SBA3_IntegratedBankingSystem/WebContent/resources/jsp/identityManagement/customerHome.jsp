@@ -16,7 +16,7 @@
 		String username = session.getAttribute("username").toString();
 		Customer customerData = (Customer) session.getAttribute("customerInfo");
 	%>
-	<h4>Hi <%=username%>,</h4>
+	<h4>Hi <span id="user"><%=username%></span>,</h4>
 	<ul>
 		<li><a href="#home">Home</a></li>
 		<li class="dropdown">
@@ -54,8 +54,9 @@
 		<li class="dropdown">
 			<a href="javascript:void(0)" class="dropbtn">User Profile</a>
 			<div class="dropdown-content">
-				<a href="customerHome">View My Details</a>
-				<a href="resources/jsp/identityManagement/customerResetPassword.jsp" onclick="window.open('resources/jsp/identityManagement/customerResetPassword.jsp', 'newwindow', 'width=800,height=400'); return false;" name="resetPassword">Reset password</a>
+				<a href="customerViewDetails">View My Details</a>
+				<!-- <a href="./WEB-INF/jsp/identityManagement/customerResetPassword.jsp" onclick="window.open('./WEB-INF/jsp/identityManagement/customerResetPassword.jsp', 'newwindow', 'width=800,height=400'); return false;" name="resetPassword">Reset password</a> -->
+				<a href="customerUpdateDetails?passwordReset=request" >Reset password</a>
 				<a href="logout" >Sign Out</a>
 				<!-- onclick="form.action='SecondServlet';" -->
 			</div>

@@ -22,8 +22,6 @@
 		String username = session.getAttribute("username").toString();
 		Customer customerData = (Customer) session.getAttribute("customerInfo");
 		
-		session.setAttribute("viewInfo", "true");
-		
 	%>
 
 	<div id="Personal" class="tabcontent">
@@ -94,7 +92,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td ><label>First Name : </label></td>
+					<td ><label>Account ID : </label></td>
 					<td><label class="info" ></label></td>
 				</tr>
 			</tbody>

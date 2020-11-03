@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="../../css/background.css" />
-<link rel="stylesheet" type="text/css" href="../../css/customerResetPassword.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/background.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/customerResetPassword.css" />
 <title>Reset Password</title>
 </head>
 <body >
@@ -16,12 +16,11 @@
 		String username = session.getAttribute("userID").toString();
 		String password = session.getAttribute("password").toString();
 		
-		if(session.getAttribute("passwordChange")==null)
+		if(session.getAttribute("passwordReset").toString().equalsIgnoreCase("request"))
 		{
-			//session.setAttribute("passwordChange", "request");
 	%>
 	<br/><br/>
-	<form class="resetForm" method="POST" action="customerHome">
+	<form class="resetForm" method="POST" action="customerUpdateDetails">
 		<table>
 			<tbody>
 				<tr>
@@ -47,38 +46,30 @@
 		<br> 
 		
 			<input type="submit" value="Ok" id="btnOk"/>
-			<input type="button" value="Cancel" id="btnCancel" onclick="closeMe()"/>
+			<a href="customerHome"><input type="button" value="Cancel" id="btnCancel"></a>
 		</form>
 		
 	
-	<%  } else {%>
+	<%  session.setAttribute("passwordReset", "done"); } else {%>
 	
-	<% if(session.getAttribute("passwordChange").toString().equalsIgnoreCase("true")) { //session.removeAttribute("passwordChange"); %>
+	<% if(session.getAttribute("passwordReset").toString().equalsIgnoreCase("true")) { //session.removeAttribute("passwordChange"); %>
 	
 	<h3 align="center" style="color:green;">Password change Successful !!!</h3>
 	<p align="center">click on close button to go back to Home Page</p>
 	<div>
-	<input type="button" value="Close Window" id="btnClose" onclick="closeMe()"/>
+	<a href="customerHome"><input type="submit" value="Close Window" id="btnClose"/></a>
 	</div>
 	
-	<% 	} 	else { //session.removeAttribute("passwordChange");%>
+	<% 	} 	else { %>
 	
 	<h3 align="center" style="color:red;">Password change unsuccessful !!!</h3>
 	<p align="center" >click on close button to go back to Home Page and change again</p>
 	<div>
-	<input type="button" value="Close Window" id="btnClose" onclick="closeMe()"/>
+	<a href="customerHome"><input type="submit" value="Close Window" id="btnClose"/></a>
 	</div>
 	
-	<% } } %>
+	<% } session.removeAttribute("passwordReset"); } %>
 	
-	
-	<script>
-		function closeMe()
-		{
-		    window.opener = self;
-		    window.close();
-		}
-</script>
 	
 </body>
 </html>
