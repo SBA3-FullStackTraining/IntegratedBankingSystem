@@ -1,0 +1,35 @@
+
+.a{
+border:2px solid #000;
+
+height:60px;
+
+color:red;
+background-color:black;
+}
+.b{
+border:2px solid #000;
+
+height:30px;
+
+color:red;
+background-color:black;
+}
+body{
+background-color:#525252;
+}
+li{
+font-weight: bold;
+color:#804d00;}
+#z{
+background-color:#33ffcc;}
+#b{
+background-color:white;}
+#c{
+background-color:#33ffcc;}
+h3{
+color: #66a3ff;}
+h5{
+color:white;
+}
+

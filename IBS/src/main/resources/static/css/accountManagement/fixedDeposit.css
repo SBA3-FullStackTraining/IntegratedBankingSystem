@@ -1,0 +1,21 @@
+
+.a{
+border:2px solid #000;
+
+height:60px;
+
+color:red;
+background-color:black;
+}
+body{
+background-color:#525252;
+}
+li{
+font-weight: bold;
+color:#804d00;}
+#z{
+background-color:#33ffcc;}
+#b{
+background-color:white;}
+#c{
+background-color:#33ffcc;}

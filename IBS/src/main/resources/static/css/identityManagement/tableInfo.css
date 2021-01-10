@@ -1,0 +1,15 @@
+#customerInfo{
+font-family:CALIBRI;
+border-collapse:collapse;
+width:100%;
+}
+
+#customerInfo td,tr,th{
+border : 1px solid;
+font-family:CALIBRI;
+}
+
+#customerInfo th{
+background:#8d82e6;
+color:#000;
+}

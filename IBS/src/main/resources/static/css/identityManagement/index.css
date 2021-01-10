@@ -1,0 +1,45 @@
+
+.tab {
+	width: 379px;
+	height: 31px;
+	vertical-align: middle;
+	text-align: center;
+	margin: auto;
+}
+
+.tab input.active {
+	background-color: #ff3b7b;
+	border-color: white;
+	border-radius: 3px;
+	height: 31px;
+	font-size: 18px;
+}
+
+.tabcontent {
+	display: none;
+	animation: fadeEffect 1s;
+}
+
+@
+keyframes fadeEffect {
+	from {opacity: 0;
+}
+
+to {
+	opacity: 1;
+}
+
+}
+.tablinks {
+	width: 187px;
+	height: 27px;
+	border: 1px;
+	border-radius: 3px;
+	background: #d8225d;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.tablinks:hover {
+	background: #ff3b7b;
+}
