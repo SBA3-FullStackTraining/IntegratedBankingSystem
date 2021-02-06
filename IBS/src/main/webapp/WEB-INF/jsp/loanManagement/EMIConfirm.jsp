@@ -22,12 +22,12 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<h1 style="text-align:center">Loan Successfully Submitted</H1>
-<h3>Customer ID :${LoanOutputDTO.customerId}</h3>
-<h3>Loan ID     :${LoanOutputDTO.loanId}</h3>
-<h3>Loan Amount :${LoanOutputDTO.loanAmount}</h3>
-<h3>Loan Tenure :${LoanOutputDTO.loanTenure}</h3>
-<h3>Status      :${LoanOutputDTO.status}</h3>
+<h1 style="text-align:center">EMI Successfully Paid</H1>
+<h3>EMI Transaction ID :${LoanEmiDTO.emiTransId}</h3>
+<h3>Customer ID        :${LoanEmiDTO.customerId}</h3>
+<h3>Loan ID            :${LoanEmiDTO.loanId}</h3>
+<h3>EMI Amount         :${LoanEmiDTO.emi}</h3>
+<h3>EMI Paid for Month & Year:${LoanEmiDTO.month}/${LoanEmiDTO.year}</h3>
 
                   
 	<a href="userHome"><input type="button" name="navigateback" value="BACK" id="btnBack"></a>
@@ -36,4 +36,4 @@
 	<br>
 		<jsp:include page="../footer.jsp"/>
 </body>
-</html>
+</html></html>

@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.banking.wf.springbootappibs.dto.AdminCredentialsDTO;
 import com.banking.wf.springbootappibs.dto.CustomerDTO;
+import com.banking.wf.springbootappibs.dto.LoanDTO;
+import com.banking.wf.springbootappibs.dto.LoanOutputDTO;
 import com.banking.wf.springbootappibs.dto.ServiceProviderDTO;
 import com.banking.wf.springbootappibs.dto.TransactionDTO;
 import com.banking.wf.springbootappibs.entity.Transaction;
 import com.banking.wf.springbootappibs.service.AccountManagementService;
 import com.banking.wf.springbootappibs.service.IdentityManagementService;
+import com.banking.wf.springbootappibs.service.LoanManagementService;
 import com.banking.wf.springbootappibs.service.ServiceProviderManagementService;
 
 @Controller
@@ -37,6 +40,9 @@ public class AdminController {
 	
 	@Autowired
 	private ServiceProviderManagementService serviceProviderManagementService;
+	
+	@Autowired
+	private LoanManagementService loanmanagementservice;
 
 
 	
@@ -319,5 +325,63 @@ public class AdminController {
 				return "serviceProviderManagement/adminDeclineSPKYC";
 			}
 			
-		
+			//Fetch Submitted status loans
+			   @RequestMapping(value="/adminUpdateloan")
+			   public String fetchsubmittedloans(ModelMap model) {
+				   
+				   String status = "Submitted";
+				   List<LoanOutputDTO> loanoutputdto = this.loanmanagementservice.fetchLoanStatus(status);
+				   model.put("LoanOutputDTO", loanoutputdto);
+				   return "loanManagement/AdminFetchLoan";
+			   }
+			   
+			   @RequestMapping(value="/AppDecLoan/{loanId}",  method=RequestMethod.GET)
+			   public String fetchloandetails(@Valid @ModelAttribute ("LoanOutputDTO") LoanOutputDTO loanoutputdto, @PathVariable("loanId") Long loanId, ModelMap model) {
+				   System.out.println("appdecloan "+loanId);
+				   loanoutputdto = this.loanmanagementservice.fetchLoan(loanId);
+				   model.addAttribute("LoanOutputDTO", loanoutputdto);
+				   model.put("LoanOutputDTO", loanoutputdto);
+				   return "loanManagement/adminLoanDetails";
+			   }
+			   
+			   @RequestMapping(value="/adminLoanupdateconfirm")
+			   public String approvedeclineloan(@Valid @ModelAttribute ("LoanOutputDTO") LoanDTO loandto, ModelMap model) {
+				  
+				   LoanOutputDTO loanoutputdto = this.loanmanagementservice.approvedeclineLoan(loandto);
+				   model.put("LoanOutputDTO", loanoutputdto);
+				   return "loanManagement/adminAppDecLoanConfirm";
+			   }
+			  
+			 //Fetch loanPCR status loans
+			   @RequestMapping(value="/adminPreClose")
+			   public String fetchpcrloan(ModelMap model) {
+				   
+				   String status = "loanPCR";
+				   List<LoanOutputDTO> loanoutputdto = this.loanmanagementservice.fetchLoanStatus(status);
+				   model.put("LoanOutputDTO", loanoutputdto);
+				   return "loanManagement/AdminPCRFetchLoan";
+			   }
+			   
+			   @RequestMapping(value="/AppDecLoanPCR/{loanId}",  method=RequestMethod.GET)
+			   public String fetchloanpcrdetails(@Valid @ModelAttribute ("LoanOutputDTO") LoanOutputDTO loanoutputdto, @PathVariable("loanId") Long loanId, ModelMap model) {
+				   System.out.println("appdecloan "+loanId);
+				   loanoutputdto = this.loanmanagementservice.fetchLoan(loanId);
+				   model.addAttribute("LoanOutputDTO", loanoutputdto);
+				   model.put("LoanOutputDTO", loanoutputdto);
+				   return "loanManagement/adminLoanpcrDetails";
+			   }
+			   
+			   @RequestMapping(value="/adminLoanpcrconfirm")
+			   public String approvedeclineloanpcr(@Valid @ModelAttribute ("LoanOutputDTO") LoanDTO loandto, ModelMap model) {
+				  
+				   LoanOutputDTO loanoutputdto = this.loanmanagementservice.approvedeclineLoan(loandto);
+				   String st = loanoutputdto.getStatus();
+				   model.put("LoanOutputDTO", loanoutputdto);
+				   if (st.equalsIgnoreCase("Closed")) {
+				   return "loanManagement/adminAppDecLoanpcrConfirm";
+				   }else
+				   {
+					   return "loanManagement/adminPCRDenied";
+				   }
+			   }
 }

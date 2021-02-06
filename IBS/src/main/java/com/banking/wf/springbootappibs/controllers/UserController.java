@@ -33,6 +33,9 @@ import com.banking.wf.springbootappibs.dto.BeneficiaryDTO;
 import com.banking.wf.springbootappibs.dto.CustomerCredentialsDTO;
 import com.banking.wf.springbootappibs.dto.CustomerDTO;
 import com.banking.wf.springbootappibs.dto.FixedDepositDTO;
+import com.banking.wf.springbootappibs.dto.LoanDTO;
+import com.banking.wf.springbootappibs.dto.LoanEmiDTO;
+import com.banking.wf.springbootappibs.dto.LoanOutputDTO;
 import com.banking.wf.springbootappibs.dto.RecurringDepositDTO;
 import com.banking.wf.springbootappibs.entity.FixedDeposit;
 import com.banking.wf.springbootappibs.entity.SavingsAccount;
@@ -41,6 +44,7 @@ import com.banking.wf.springbootappibs.entity.Transaction;
 import com.banking.wf.springbootappibs.service.AccountManagementService;
 import com.banking.wf.springbootappibs.service.BeneficiaryManagementService;
 import com.banking.wf.springbootappibs.service.IdentityManagementService;
+import com.banking.wf.springbootappibs.service.LoanManagementService;
 import com.banking.wf.springbootappibs.service.ServiceProviderManagementService;
 
 @Controller
@@ -58,6 +62,9 @@ public class UserController {
 
 	@Autowired
 	private ServiceProviderManagementService serviceProviderManagementService;
+
+	@Autowired
+	private LoanManagementService loanmanagementservice;
 
 	
 	@RequestMapping(value="/index", method=RequestMethod.GET)
@@ -703,10 +710,119 @@ public class UserController {
 				model.put("serviceProviderDto", serviceProviderDto);
 				return "serviceProviderManagement/custServiceProvider";
 				
-				
 			}
 
+			@RequestMapping(value="/ApplyLoan", method = RequestMethod.GET)
 
+			public String applyLoan(ModelMap model) {
+				//business logic 
+				model.put("Id", getLoggedInUserName());
+				Long id = Long.parseLong(getLoggedInUserName());
+				System.out.println(id);
+				LoanDTO loandto = new LoanDTO();
+			    model.addAttribute("LoanDTO", loandto);
+			    model.put("LoanDTO", loandto);
+			    //model.put("CusID", id);
+			    return "loanManagement/CustApplyForLoan";
+			}
+			
+			@RequestMapping(value="/LoanApplied")
+			public String loansubmitted(@Valid @ModelAttribute ("LoanDTO") LoanDTO loandto, ModelMap model) {
+				
+				model.put("Id", getLoggedInUserName());
+				Long id = Long.parseLong(getLoggedInUserName());
+				LoanOutputDTO loanoutputdto = this.loanmanagementservice.applyLoan(id, loandto);
+				model.addAttribute("LoanOutputDTO", loanoutputdto);
+				model.put("LoanOutputDTO", loanoutputdto);
+				return "loanManagement/loan-confirm";
+			}
+			
+			@RequestMapping(value="/PayLoanEmi")
+			public String fetchloanemi(ModelMap model) {
+				model.put("Id", getLoggedInUserName());
+				Long id = Long.parseLong(getLoggedInUserName());
+				System.out.println(id);
+				String status = "Approved";
+				List<LoanOutputDTO> loanoutputdto = this.loanmanagementservice.fetchAllLoans(id, status);
+				model.put("LoanOutputDTO", loanoutputdto);
+				return "loanManagement/payloanemi";
+			}
+            
+			@RequestMapping(value="/LoanEmiDetails/{loanId}/{emi}/{customerId}",  method=RequestMethod.GET)
+			   public String fetchloandetails(LoanEmiDTO loanemidto,@PathVariable("customerId") Long customerId, @PathVariable("loanId") Long loanId,@PathVariable("emi") Double emi, ModelMap model) {
+				   model.put("Id", getLoggedInUserName());
+				   Long id = Long.parseLong(getLoggedInUserName());
+				   System.out.println("Loan id "+ loanId);
+				   //loanoutputdto = this.loanmanagementservice.fetchLoan(loanId);
+				   model.addAttribute("LoanEmiDTO", loanemidto);
+				   model.put("emi", loanemidto);
+				   model.put("LoanEmiDTO", loanemidto);
+				   return "loanManagement/emidetails";
+			   }
+			 
+			@RequestMapping(value="/emiconfirm")
+			public String emipaid(@Valid @ModelAttribute ("LoanEmiDTO") LoanEmiDTO loanEmidto, ModelMap model) {
+				
+				model.put("Id", getLoggedInUserName());
+				Long id = Long.parseLong(getLoggedInUserName());
+				LoanEmiDTO loanemidto = this.loanmanagementservice.payemi(loanEmidto);
+				//model.addAttribute("LoanEmiDTO", loanemidto);
+				model.put("LoanEmiDTO", loanemidto);
+				return "loanManagement/EMIConfirm";
+			   
+			}
+            
+			@RequestMapping(value="/LoanStatement")
+			public String fetchloanst(ModelMap model) {
+				model.put("Id", getLoggedInUserName());
+				Long id = Long.parseLong(getLoggedInUserName());
+				System.out.println(id);
+				String status = "Approved";
+				List<LoanOutputDTO> loanoutputdto = this.loanmanagementservice.fetchAllLoans(id, status);
+				model.put("LoanOutputDTO", loanoutputdto);
+				return "loanManagement/generateloanst";
+			}
+           
+			@RequestMapping(value="/loanstatementdisplay/{loanId}", method=RequestMethod.GET)
+			public String loanstatement(@PathVariable("loanId") Long loanId,ModelMap model) {
+				model.put("Id", getLoggedInUserName());
+				Long id = Long.parseLong(getLoggedInUserName());
+				System.out.println(id);
+			    List<LoanEmiDTO> loanemidto = this.loanmanagementservice.fetchAllEmistatement(loanId);
+				model.put("LoanEmiDTO", loanemidto);
+				return "loanManagement/statement_generation";
+			}
+			
+			@RequestMapping(value="/LoanPreClose")
+			public String fetchloanpreclose(ModelMap model) {
+				model.put("Id", getLoggedInUserName());
+				Long id = Long.parseLong(getLoggedInUserName());
+				System.out.println(id);
+				String status = "Approved";
+				List<LoanOutputDTO> loanoutputdto = this.loanmanagementservice.fetchAllLoans(id, status);
+				model.put("LoanOutputDTO", loanoutputdto);
+				return "loanManagement/loanpreclosefetchloan";
+			}
+			
+			@RequestMapping(value="/LoanPreCloseSubmit/{loanId}", method=RequestMethod.GET)
+			   public String fetchloandetails(@Valid @ModelAttribute ("LoanOutputDTO") LoanOutputDTO loanoutputdto, @PathVariable("loanId") Long loanId, ModelMap model) {
+				   System.out.println("prclose "+loanId);
+				   loanoutputdto = this.loanmanagementservice.fetchLoan(loanId);
+				   model.addAttribute("LoanOutputDTO", loanoutputdto);
+				   model.put("LoanOutputDTO", loanoutputdto);
+				   return "loanManagement/LoanPreCloseSubmit";
+			}
+			
+			@RequestMapping(value="/LoanPreClosesummary")
+			public String emipaid(@Valid @ModelAttribute ("LoanOutputDTO") LoanDTO loandto, ModelMap model) {
+				
+				model.put("Id", getLoggedInUserName());
+				Long id = Long.parseLong(getLoggedInUserName());
+				LoanOutputDTO loanoutputdto = this.loanmanagementservice.loanpreclose(loandto);
+				//model.addAttribute("LoanEmiDTO", loanemidto);
+				model.put("LoanOutputDTO", loanoutputdto);
+				return "loanManagement/PreClosereqsubmitted";
+			}
 
 
 }

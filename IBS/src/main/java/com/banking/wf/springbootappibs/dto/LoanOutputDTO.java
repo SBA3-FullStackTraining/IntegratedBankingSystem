@@ -1,5 +1,7 @@
 package com.banking.wf.springbootappibs.dto;
 
+import java.util.Date;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,6 +19,10 @@ public class LoanOutputDTO {
 	private String loanTenure;
 	private String remark;
 	private String status;
+	private Double loanInterestRate;
+	private Double emi;
+	
+	
 	public long getLoanId() {
 		return loanId;
 	}
@@ -80,8 +86,21 @@ public class LoanOutputDTO {
 	public String getStatus() {
 		return status;
 	}
+	public Double getEmi() {
+		return emi;
+	}
+	public void setEmi(Double emi) {
+		this.emi = emi;
+	}
 	public void setStatus(String status) {
 		this.status = status;
-	} 
+	}
+	public Double getLoanInterestRate() {
+		return loanInterestRate;
+	}
+	public void setLoanInterestRate(Double loanInterestRate) {
+		this.loanInterestRate = loanInterestRate;
+	}
+
 
 }

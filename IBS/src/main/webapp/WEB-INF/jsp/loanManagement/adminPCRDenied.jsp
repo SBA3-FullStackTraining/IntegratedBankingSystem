@@ -22,18 +22,16 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<h1 style="text-align:center">Loan Successfully Submitted</H1>
-<h3>Customer ID :${LoanOutputDTO.customerId}</h3>
-<h3>Loan ID     :${LoanOutputDTO.loanId}</h3>
-<h3>Loan Amount :${LoanOutputDTO.loanAmount}</h3>
-<h3>Loan Tenure :${LoanOutputDTO.loanTenure}</h3>
-<h3>Status      :${LoanOutputDTO.status}</h3>
+<h1 style="text-align:center">Loan Pre-Close Request Rejected</H1>
+<h3>Customer ID        :${LoanOutputDTO.customerId}</h3>
+<h3>Loan ID            :${LoanOutputDTO.loanId}</h3>
+<h3>Your Pre Closing Request is Rejected with following Remarks :${LoanOutputDTO.remark} </h3>
 
                   
-	<a href="userHome"><input type="button" name="navigateback" value="BACK" id="btnBack"></a>
+	<a href="adminHome"><input type="button" name="navigateback" value="BACK" id="btnBack"></a>
 		
 	<br>
 	<br>
 		<jsp:include page="../footer.jsp"/>
 </body>
-</html>
+</html>l>

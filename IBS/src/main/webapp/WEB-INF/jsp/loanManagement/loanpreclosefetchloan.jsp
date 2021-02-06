@@ -22,18 +22,38 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<h1 style="text-align:center">Loan Successfully Submitted</H1>
-<h3>Customer ID :${LoanOutputDTO.customerId}</h3>
-<h3>Loan ID     :${LoanOutputDTO.loanId}</h3>
-<h3>Loan Amount :${LoanOutputDTO.loanAmount}</h3>
-<h3>Loan Tenure :${LoanOutputDTO.loanTenure}</h3>
-<h3>Status      :${LoanOutputDTO.status}</h3>
+<h1 style="text-align:center">Fetch Loan Details</H1>
+<%-- <spring:form action="${pageContext.request.contextPath}/user/LoanEmiDetails" modelAttribute="LoanOutputDTO"> --%>
 
-                  
-	<a href="userHome"><input type="button" name="navigateback" value="BACK" id="btnBack"></a>
-		
-	<br>
-	<br>
-		<jsp:include page="../footer.jsp"/>
+<H2 style="text-align:center">EMI Amount</H2>
+<table id="emi_amt" style="background: cornsilk;">
+			<thead>
+				<tr>
+					<th>Customer_ID</th>
+					<th>Loan_Id</th>
+					<th>Loan_Name</th>
+					<th>EMI_Amount</th>
+					<th colspan="1">Click Here to Pre-Close</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${LoanOutputDTO}" var="id">
+					<tr>
+						<td><c:out value="${id.customerId}" /></td>
+						<td><c:out value="${id.loanId}" /></td>
+						<td><c:out value="${id.loanName}" /></td>
+						<td><c:out value="${id.emi}" /></td>
+						
+						<td colspan="1">
+							<a href="../user/LoanPreCloseSubmit/${id.loanId}"><input type="button" value="Click Here to Pre Close" id="pre_close"/></a>
+							
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+			<br> 
+	<a href="../user/userHome">
+		<input type="button" value="Back" id="btnBack"/>
 </body>
 </html>

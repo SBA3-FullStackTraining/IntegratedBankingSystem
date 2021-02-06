@@ -1,5 +1,6 @@
 package com.banking.wf.springbootappibs.dto;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -7,18 +8,18 @@ import org.hibernate.validator.constraints.Length;
 public class LoanEmiDTO {
 	
 	private long emiTransId;
-	@Length(max = 5, min = 5, message="Loan ID should be of 5 digits")
 	@NotNull(message = "Loan ID  is required!")
 	private long loanId;
-	@Length(max = 16, min = 16, message="Customer ID should be of 16 digits")
 	@NotNull(message = "Customer ID  is required!")
 	private long customerId;
-	@NotNull(message = "Select the Month")
+	@NotBlank(message = "Select the Month")
 	private String month;
-	@NotNull(message = "Select the Year")
+	@NotBlank(message = "Select the Year")
 	private String year; 
 	@NotNull(message = "Enter the emi amount to be paid, This field should not be empty")
-	private Double emiAmount;
+	private Double emi;
+	@NotBlank(message = "Loan ApplicationDate is required!")
+	private String loanEmiDate;
 	public long getEmiTransId() {
 		return emiTransId;
 	}
@@ -49,11 +50,17 @@ public class LoanEmiDTO {
 	public void setYear(String year) {
 		this.year = year;
 	}
-	public Double getEmiAmount() {
-		return emiAmount;
+	public Double getEmi() {
+		return emi;
 	}
-	public void setEmiAmount(Double emiAmount) {
-		this.emiAmount = emiAmount;
+	public void setEmi(Double emi) {
+		this.emi = emi;
 	}
-     
+	public String getLoanEmiDate() {
+		return loanEmiDate;
+	}
+	public void setLoanEmiDate(String loanEmiDate) {
+		this.loanEmiDate = loanEmiDate;
+	}
+    
 }

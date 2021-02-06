@@ -25,6 +25,7 @@ public class LoanEmi {
 	@ColumnDefault("60000")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long emiTransId;
+	@Column(length=5, nullable=false)
 	private long loanId;
 	private long customerId;
 	@Column(length=100, nullable=false)
@@ -32,9 +33,18 @@ public class LoanEmi {
 	@Column(length=4, nullable=false)
 	private String year;
 	@Column(length=100000000, nullable=false)
-	private Double emiAmount;
+	private Double emi;
+	@Column(length=100, nullable=false)
+	private String loanEmiDate;
 	
 	
+	
+	public String getLoanEmiDate() {
+		return loanEmiDate;
+	}
+	public void setLoanEmiDate(String loanEmiDate) {
+		this.loanEmiDate = loanEmiDate;
+	}
 	public long getEmiTransId() {
 		return emiTransId;
 	}
@@ -65,11 +75,12 @@ public class LoanEmi {
 	public void setYear(String year) {
 		this.year = year;
 	}
-	public Double getEmiAmount() {
-		return emiAmount;
+	public Double getEmi() {
+		return emi;
 	}
-	public void setEmiAmount(Double emiAmount) {
-		this.emiAmount = emiAmount;
+	public void setEmi(Double emi) {
+		this.emi = emi;
 	}
+
      
 }

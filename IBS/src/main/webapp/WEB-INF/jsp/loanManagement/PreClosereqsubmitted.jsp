@@ -22,12 +22,12 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<h1 style="text-align:center">Loan Successfully Submitted</H1>
-<h3>Customer ID :${LoanOutputDTO.customerId}</h3>
-<h3>Loan ID     :${LoanOutputDTO.loanId}</h3>
-<h3>Loan Amount :${LoanOutputDTO.loanAmount}</h3>
-<h3>Loan Tenure :${LoanOutputDTO.loanTenure}</h3>
-<h3>Status      :${LoanOutputDTO.status}</h3>
+<h1 style="text-align:center">Pre-Close Request Submitted Successfully</H1>
+<h3>Customer ID        :${LoanOutputDTO.customerId}</h3>
+<h3>Loan ID            :${LoanOutputDTO.loanId}</h3>
+<h3>Loan Amount        :${LoanOutputDTO.loanAmount}</h3>
+<h3>Loan Tenure        :${LoanOutputDTO.loanTenure}</h3>
+<h3>Status             :${LoanOutputDTO.status}</h3>
 
                   
 	<a href="userHome"><input type="button" name="navigateback" value="BACK" id="btnBack"></a>

@@ -22,18 +22,35 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"/>
-<h1 style="text-align:center">Loan Successfully Submitted</H1>
-<h3>Customer ID :${LoanOutputDTO.customerId}</h3>
-<h3>Loan ID     :${LoanOutputDTO.loanId}</h3>
-<h3>Loan Amount :${LoanOutputDTO.loanAmount}</h3>
-<h3>Loan Tenure :${LoanOutputDTO.loanTenure}</h3>
-<h3>Status      :${LoanOutputDTO.status}</h3>
+<h1 style="text-align:center">Fetch Loan Details</H1>
 
-                  
-	<a href="userHome"><input type="button" name="navigateback" value="BACK" id="btnBack"></a>
+
+  <h3>List Of Applied Loans : </h3>
+  										<c:forEach items="${LoanOutputDTO}" var="id">
+  											<input type="text" name="loanId" value="${id.loanId}" readonly="true"></input>	
+  																
+  										
+  		<a href="../admin/AppDecLoan/${id.loanId}"><input type="button" value="Fetch Loan" id="FetchLoan"/></a></br>
+	</c:forEach>	
+<%--   <spring:form action="${pageContext.request.contextPath}/admin/AppDecLoan" modelAttribute="LoanOutputDTO">										
+  <h3>Enter the Loan ID From the List above</h3>
+  					<table>
+  					<tr>
+					<th><spring:label path = "loanId">Loan ID</spring:label></th>
+					<td><spring:input path = "loanId" type ="text"/></td>
+					</tr>
+					</table> --%>
+
+
+           
+           
+             <!-- <input name="Submit" type="submit" value="Fetch Loan" /> -->
+         
+
+
+<a href="adminHome"><input type="button" name="navigateback" value="BACK" id="btnBack"></a>
 		
-	<br>
-	<br>
-		<jsp:include page="../footer.jsp"/>
+		
+<jsp:include page="../footer.jsp"/>
 </body>
 </html>

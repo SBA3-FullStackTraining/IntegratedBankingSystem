@@ -1,5 +1,7 @@
 package com.banking.wf.springbootappibs.dto;
 
+import java.util.Date;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -24,6 +26,13 @@ public class LoanDTO {
 	private String taxIndicator;
 	@NotBlank(message = "Select a Loan Tenure")
 	private String loanTenure;
+	@NotBlank(message = "Enter a Status")
+	private String status;
+	@NotNull(message="Interest rate required")
+	private Double loanInterestRate;
+	private String remark;
+    private Double emi;
+
 	public String getLoanTenure() {
 		return loanTenure;
 	}
@@ -41,12 +50,6 @@ public class LoanDTO {
 	}
 	public void setLoanAmount(Double loanAmount) {
 		this.loanAmount = loanAmount;
-	}
-	public String getLoanApplicationDate() {
-		return loanApplicationDate;
-	}
-	public void setLoanApplicationDate(String loanApplicationDate) {
-		this.loanApplicationDate = loanApplicationDate;
 	}
 	public String getBusinessStructure() {
 		return businessStructure;
@@ -78,6 +81,39 @@ public class LoanDTO {
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Double getLoanInterestRate() {
+		return loanInterestRate;
+	}
+	public void setLoanInterestRate(Double loanInterestRate) {
+		this.loanInterestRate = loanInterestRate;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getLoanApplicationDate() {
+		return loanApplicationDate;
+	}
+	public void setLoanApplicationDate(String loanApplicationDate) {
+		this.loanApplicationDate = loanApplicationDate;
+	}
+	public Double getEmi() {
+		return emi;
+	}
+	public void setEmi(Double emi) {
+		this.emi = emi;
+	}
 
 
+	
+	
 }

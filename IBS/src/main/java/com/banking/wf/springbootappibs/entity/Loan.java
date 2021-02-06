@@ -1,5 +1,7 @@
 package com.banking.wf.springbootappibs.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,10 +41,22 @@ public class Loan {
 	@Column(length=100, nullable=false)
 	private String taxIndicator;
 	@Column(length=100, nullable=false)
-	private Integer status;
+	private String status;
 	@Column(length=100, nullable=false)
 	private String remark;
+	@Column(length=100, nullable=false)
+	private Double loanInterestRate;
+	@Column(length=100, nullable=false)
+	private Double emi;
+
 	
+
+	public Double getEmi() {
+		return emi;
+	}
+	public void setEmi(Double emi) {
+		this.emi = emi;
+	}
 	public Long getloanId() {
 		return loanId;
 	}
@@ -91,14 +105,20 @@ public class Loan {
 	public void setTaxIndicator(String taxIndicator) {
 		this.taxIndicator = taxIndicator;
 	}
-	public Integer getStatus() {
-		return status;
-	}
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
 	public String getRemark() {
 		return remark;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Double getLoanInterestRate() {
+		return loanInterestRate;
+	}
+	public void setLoanInterestRate(Double loanInterestRate) {
+		this.loanInterestRate = loanInterestRate;
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
@@ -115,5 +135,6 @@ public class Loan {
 	public void setLoanTenure(String loanTenure) {
 		this.loanTenure = loanTenure;
 	}
+
 	
 }
