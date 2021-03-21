@@ -34,9 +34,8 @@
 		<li class="dropdown">
 			<a href="javascript:void(0)" class="dropbtn">Loan Management</a>
 			<div class="dropdown-content">
-				<a href="#">Update Loan Types/Interests</a>
-				<a href="#">Approve/Decline Loan requests</a>
-				<a href="#">Approve/Decline Pre-closures</a>
+				<a href="${pageContext.request.contextPath}/admin/adminUpdateloan">Approve/Decline/Update Loan</a>
+				<a href="${pageContext.request.contextPath}/admin/adminPreClose">Approve/Decline Pre-closures</a>
 			</div>
 		</li>
 		<li class="dropdown">

@@ -16,7 +16,7 @@ public class SavingsAccount {
 	@Column(length=5, nullable=false)
 	//@Column(columnDefinition="Int(5) default 50000")
 	@ColumnDefault("90000")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	//@Column(name="savingsAccID",columnDefinition = "int default 10")
    // private int value;
 	private Long savingsAccID;

@@ -46,10 +46,10 @@ body {
 		<li class="dropdown">
 			<a href="javascript:void(0)" class="dropbtn">Loan Management</a>
 			<div class="dropdown-content">
-			<a href="${pageContext.request.contextPath}/user/ApplyLoan/${customerInfo.customerID}">Apply Loan</a>
-				<a href="${pageContext.request.contextPath}/user/PayLoanEmi/${customerInfo.customerID}">Pay EMI</a>
-				<a href="${pageContext.request.contextPath}/user/LoanStatement/${customerInfo.customerID}">Generate Loan statement</a>
-				<a href="${pageContext.request.contextPath}/user/LoanClosure/${customerInfo.customerID}">Request Loan closure</a>
+			<a href="${pageContext.request.contextPath}/user/ApplyLoan">Apply Loan</a>
+				<a href="${pageContext.request.contextPath}/user/PayLoanEmi">Pay EMI</a>
+				<a href="${pageContext.request.contextPath}/user/LoanStatement">Generate Loan statement</a>
+				<a href="${pageContext.request.contextPath}/user/LoanPreClose">Request Loan closure</a>
 			</div>
 		</li>
 		
